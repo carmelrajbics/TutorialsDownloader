@@ -214,7 +214,7 @@
                     htmlPack.DocumentNode.Descendants("div")
                         .FirstOrDefault(
                             d => d.Attributes["class"] != null && d.Attributes["class"].Value == "title section")
-                        .Descendants("h2")
+                        .Descendants("h1")
                         .FirstOrDefault()
                         .InnerText;
                 course = WebUtility.HtmlDecode(course).Trim();
