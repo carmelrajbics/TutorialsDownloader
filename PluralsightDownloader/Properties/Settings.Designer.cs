@@ -58,5 +58,17 @@ namespace PluralsightDownloader.Properties {
                 this["Downloads"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowConsole {
+            get {
+                return ((bool)(this["ShowConsole"]));
+            }
+            set {
+                this["ShowConsole"] = value;
+            }
+        }
     }
 }

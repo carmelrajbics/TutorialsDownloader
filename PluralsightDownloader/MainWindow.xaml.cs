@@ -67,7 +67,7 @@
                 var arguments = @"--update";
                 var psi = new ProcessStartInfo(@"Resources\youtube-dl.exe", arguments);
 
-                if (!Debugger.IsAttached)
+                if(!(Debugger.IsAttached || Properties.Settings.Default.ShowConsole))
                 {
                     psi.CreateNoWindow = true;
                     psi.UseShellExecute = false;
@@ -214,7 +214,7 @@
                     htmlPack.DocumentNode.Descendants("div")
                         .FirstOrDefault(
                             d => d.Attributes["class"] != null && d.Attributes["class"].Value == "title section")
-                        .Descendants("h2")
+                        .Descendants("h1")
                         .FirstOrDefault()
                         .InnerText;
                 course = WebUtility.HtmlDecode(course).Trim();
@@ -330,7 +330,7 @@
                     "--username {0} --password {1} -o \"{2}\" --playlist-start {3} --playlist-end {3} --max-downloads 1 --rate-limit 100K \"{4}\"",
                     userName,
                     password,
-                    fileName,
+                    fileName.Replace("%", "%%"),
                     index,
                     uri);
 
