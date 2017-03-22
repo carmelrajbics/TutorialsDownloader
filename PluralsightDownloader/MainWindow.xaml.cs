@@ -225,7 +225,7 @@
                         .Where(
                             d =>
                             d.Attributes["id"] != null
-                            && d.Attributes["id"].Value.Equals("tab-toc__accordion"))
+                            && d.Attributes["id"].Value.Equals("course_modules__accordion"))
                         .FirstOrDefault();
 
                 var divs =
