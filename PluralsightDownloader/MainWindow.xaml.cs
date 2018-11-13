@@ -206,6 +206,11 @@
 
             using (var client = new WebClient())
             {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                       | SecurityProtocolType.Tls11
+                                                       | SecurityProtocolType.Tls12
+                                                       | SecurityProtocolType.Ssl3;
+
                 var html = client.DownloadString(uri);
                 var htmlPack = new HtmlDocument();
                 htmlPack.LoadHtml(html);
@@ -244,7 +249,7 @@
                     var content = divs[i + 1];
 
                     var category =
-                        title.Descendants("a")
+                        title.Descendants("div")
                             .FirstOrDefault(
                                 a =>
                                 a.Attributes["class"] != null
@@ -282,10 +287,10 @@
                                 t =>
                                     {
                                         var time = t.InnerText.Split(
-                                            new string[] { "m ", "s" },
+                                            new string[] { "m" },
                                             StringSplitOptions.RemoveEmptyEntries);
 
-                                        return int.Parse(time[0].Trim()) * 60 + int.Parse(time[1].Trim());
+                                        return (int.Parse(time[0].Trim()) + 1) * 60;
                                     }).ToList();
 
                     playlist.AddRange(
